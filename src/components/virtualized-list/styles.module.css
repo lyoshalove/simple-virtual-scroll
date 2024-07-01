@@ -1,0 +1,8 @@
+.wrapper {
+  overflow-y: auto;
+  position: relative;
+}
+
+.list {
+  overflow-y: auto;
+}
