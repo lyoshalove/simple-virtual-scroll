@@ -18,7 +18,6 @@ type VirtualizedListProps<T> = {
   itemSize: number;
   data: T[];
   children: (data: T, isScrolling: boolean, styles: CSSProperties) => ReactNode;
-  FallbackToBottom?: ({ top }: { top: number }) => ReactNode;
 };
 
 export const VirtualizedList = <T extends { id: number } = Post>({
