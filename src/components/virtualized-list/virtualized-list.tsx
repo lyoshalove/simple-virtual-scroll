@@ -34,22 +34,15 @@ export const VirtualizedList = <T extends { id: number } = Post>({
   const [scrollTop, setScrollTop] = useState(0);
   const allListHeight = itemsCount * itemSize;
 
-  const wrapperStyles = useMemo<CSSProperties>(
-    () => ({
-      width,
-      height,
-    }),
-    [height, width],
-  );
+  const wrapperStyles: CSSProperties = {
+    width,
+    height,
+  };
 
-  const listStyles = useMemo<CSSProperties>(
-    () => ({
-      height: allListHeight,
-    }),
-    [allListHeight],
-  );
+  const listStyles: CSSProperties = {
+    height: allListHeight,
+  };
 
-  // TODO: think about recalculation <Childrens />. We really need so much deps in Childrens?
   const Childrens = useMemo(() => {
     const itemsInTop = Math.round(scrollTop / itemSize);
     const itemsToShow = data.slice(
@@ -67,15 +60,14 @@ export const VirtualizedList = <T extends { id: number } = Post>({
   useEffect(() => {
     // TODO: think about optimization scroll handlers
     const debouncedStopScrolling = debounce(() => setIsScrolling(false), 500);
-    const throttledHandleScroll = () => {
-      if (typeof wrapperRef.current?.scrollTop === 'number') {
-        setScrollTop(wrapperRef.current?.scrollTop);
-      }
-    };
 
     const handleScroll = () => {
       setIsScrolling(true);
-      throttledHandleScroll();
+
+      if (typeof wrapperRef.current?.scrollTop === 'number') {
+        setScrollTop(wrapperRef.current?.scrollTop);
+      }
+
       debouncedStopScrolling();
     };
 

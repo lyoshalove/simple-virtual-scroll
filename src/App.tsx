@@ -25,10 +25,10 @@ function App() {
     <VirtualizedList
       width={'100%'}
       height={800}
-      itemsCount={100}
+      itemsCount={posts.length}
       itemSize={100}
       data={posts}>
-      {(data: Post, isScrolling, styles) => (
+      {(data, isScrolling, styles) => (
         <div key={data.id} className="row" style={styles}>
           {isScrolling ? (
             <p>Scrolling..</p>
