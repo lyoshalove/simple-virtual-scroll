@@ -52,7 +52,7 @@ export const VirtualizedList = <T extends { id: number } = Post>({
 
     return itemsToShow.map((item, index) =>
       children(item, isScrolling, {
-        top: (itemsInTop + index) * itemSize,
+        transform: `translateY(${(itemsInTop + index) * itemSize}px)`,
       }),
     );
   }, [children, data, isScrolling, itemSize, itemsCountToShow, scrollTop]);
